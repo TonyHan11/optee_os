@@ -596,9 +596,11 @@ void matrix_interrupt_init(void)
 		base = matrix_get_base(i);
 
 		/* Enable errors interrupts for all masters */
-		matrix_write(base, MATRIX_MEIER, MATRIX_MASTER_COUNT - 1);
+		matrix_write(base, MATRIX_MEIER,
+			     GENMASK_32(MATRIX_MASTER_COUNT - 1, 0));
 		/* Unmask all masters */
-		matrix_write(base, MATRIX_MEIMR, MATRIX_MASTER_COUNT - 1);
+		matrix_write(base, MATRIX_MEIMR,
+			     GENMASK_32(MATRIX_MASTER_COUNT - 1, 0));
 	}
 }
 
